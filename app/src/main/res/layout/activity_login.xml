@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    >
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <EditText
+        android:id="@+id/user"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:hint="Phone Number"
+        android:textColorHighlight="#2196F3"
+        android:textColor="#2196F3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="195dp"
+        android:text="1@abc.com"
+        android:layout_below="@id/app_bar"
+        />
+
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user"
+        android:textColor="#2196F3"
+        android:textColorHighlight="#2196F3"
+        android:gravity="center"
+        android:text="123"
+        android:layout_alignEnd="@+id/user"
+        android:hint="Password"
+        android:layout_alignLeft="@+id/user"
+        android:layout_alignRight="@+id/user"
+        android:layout_alignStart="@+id/user"
+        android:ems="10"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pass"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:text="login"
+        android:textColor="#BBDEFB"
+        android:background="#2196F3"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</RelativeLayout>

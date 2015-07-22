@@ -29,7 +29,7 @@ public class Invite extends ActionBarActivity {
     EditText name;
     Button phoneBook;
     Button submit;
-    String TAG="LogCheck";
+    String TAG = "LogCheck";
     Toolbar toolbar;
 
     @Override
@@ -37,6 +37,7 @@ public class Invite extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
 
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -44,11 +45,11 @@ public class Invite extends ActionBarActivity {
         number = (EditText) findViewById(R.id.phoneNumber);
         name = (EditText) findViewById(R.id.friendName);
         submit = (Button) findViewById(R.id.invite);
-        phoneBook= (Button) findViewById(R.id.phone);
+        phoneBook = (Button) findViewById(R.id.phone);
         phoneBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Invite.this,InviteByPhoneBook.class);
+                Intent intent = new Intent(Invite.this, InviteByPhoneBook.class);
                 startActivity(intent);
             }
         });
@@ -57,57 +58,56 @@ public class Invite extends ActionBarActivity {
             public void onClick(View v) {
                 String userNumber = number.getText().toString();
                 String userName = name.getText().toString();
-                if ((userNumber.isEmpty())||(userName.isEmpty())) {
-                    Toast.makeText(getApplicationContext(),"Fill the Fields",Toast.LENGTH_LONG).show();
-                }
-                else {
+                if ((userNumber.isEmpty()) || (userName.isEmpty())) {
+                    Toast.makeText(getApplicationContext(), "Fill the Fields", Toast.LENGTH_LONG).show();
+                } else {
 
-                // Tag used to cancel the request
-                String tag_json_obj = "json_obj_req";
+                    // Tag used to cancel the request
+                    String tag_json_obj = "json_obj_req";
 
-                String url = "http://10.10.20.169:82/newTrend/hostApp/sendSms.php?number=" + userNumber + "&name=" + userName;
+                    String url = "http://10.10.20.169:82/newTrend/hostApp/sendSms.php?number=" + userNumber + "&name=" + userName;
 
-                final ProgressDialog pDialog = new ProgressDialog(Invite.this);
-                pDialog.setMessage("Loading...");
-                pDialog.show();
+                    final ProgressDialog pDialog = new ProgressDialog(Invite.this);
+                    pDialog.setMessage("Loading...");
+                    pDialog.show();
 
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                        url, null,
-                        new Response.Listener<JSONObject>() {
-                            JSONArray dataSet = null;
+                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                            url, null,
+                            new Response.Listener<JSONObject>() {
+                                JSONArray dataSet = null;
 
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    dataSet = (JSONArray) response.get("data");
-                                    Log.d("checkingLog", "DataSet" + dataSet);
-                                    JSONObject json = dataSet.getJSONObject(0);
-                                    String pass = json.get("message").toString();
-                                    pDialog.hide();
-                                    Log.d("checkingP", pass);
-                                    Toast.makeText(getApplicationContext(), pass + "", Toast.LENGTH_LONG).show();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        dataSet = (JSONArray) response.get("data");
+                                        Log.d("checkingLog", "DataSet" + dataSet);
+                                        JSONObject json = dataSet.getJSONObject(0);
+                                        String pass = json.get("message").toString();
+                                        pDialog.hide();
+                                        Log.d("checkingP", pass);
+                                        Toast.makeText(getApplicationContext(), pass + "", Toast.LENGTH_LONG).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
+                            }, new Response.ErrorListener() {
 
-                            }
-                        }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error: " + error + " ");
-                        // hide the progress dialog
-                        pDialog.hide();
-                    }
-                });
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d(TAG, "Error: " + error + " ");
+                            // hide the progress dialog
+                            pDialog.hide();
+                        }
+                    });
 
 // Adding request to request queue
-                AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
-            }
+                    AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+                }
             }
         });
 
-    }
+   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,7 +135,12 @@ public class Invite extends ActionBarActivity {
             // finish();*/
             return true;
         }
-    }
+            //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+                return true;
+        }
 
+         return super.onOptionsItemSelected(item);
+    }
 
 }

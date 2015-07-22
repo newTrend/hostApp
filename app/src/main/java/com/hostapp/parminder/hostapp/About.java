@@ -16,6 +16,7 @@ public class About extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -35,7 +36,11 @@ public class About extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (item.getItemId() == android.R.id.home) {
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == android.R.id.home) {
 
             Intent home = new Intent(getApplicationContext(),RSVP.class);
             startActivity(home);
@@ -45,10 +50,6 @@ public class About extends ActionBarActivity {
             NavUtils.navigateUpTo(this, intent);
             // NavUtils.navigateUpFromSameTask(this);
             // finish();*/
-            return true;
-        }
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
             return true;
         }
 

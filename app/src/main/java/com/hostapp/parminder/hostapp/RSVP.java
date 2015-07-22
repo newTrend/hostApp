@@ -53,6 +53,7 @@ public class RSVP extends ActionBarActivity {
         setContentView(R.layout.activity_rsvp);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
         user = (TextView) findViewById(R.id.textView4);
         total = (TextView) findViewById(R.id.textView3);
 
@@ -149,7 +150,7 @@ public class RSVP extends ActionBarActivity {
             SharedPreferences.Editor editor = getSharedPreferences("userD", MODE_PRIVATE).edit();
             editor.putString("loginDetails", "no");
             editor.commit();
-            intent = new Intent(RSVP.this, MainActivity.class);
+            intent = new Intent(RSVP.this, Login.class);
             startActivity(intent);
 
         } else if (id == R.id.menu) {

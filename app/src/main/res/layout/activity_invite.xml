@@ -2,46 +2,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/bg"
     tools:context="com.hostapp.parminder.hostapp.Invite">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Invite Friends"
-        android:textSize="30dp" />
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
 
+    <RelativeLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@+id/app_bar"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/la">
 
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:id="@+id/friendName"
+        android:hint="Name"
+        android:textColorHint="@color/textHint"
+        android:textColor="@color/black"
+        android:textColorHighlight="#11768C"
         android:layout_below="@id/textView"
+        android:paddingLeft="8dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_marginTop="25dp" />
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:id="@+id/phoneNumber"
+        android:textColor="@color/black"
         android:layout_below="@id/friendName"
+        android:hint="Phone Number"
+        android:textColorHint="@color/textHint"
+        android:paddingLeft="8dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_marginTop="25dp" />
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="send invitation"
+        android:background="@color/primaryColor"
         android:id="@+id/invite"
         android:layout_below="@+id/phoneNumber"
+        android:padding="15dp"
         android:layout_marginTop="25dp"/>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/la"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_centerInParent="true">
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="or"
+        android:textSize="20dp"
+        android:layout_marginLeft="120dp"
+        android:textColor="@color/black"
+        />
+
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose From"
+            android:textSize="17dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/black"
+            />
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Phone Book"
+        android:layout_below="@+id/from"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
         android:id="@+id/phone"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:background="@color/primaryColor"
+         />
 
+</RelativeLayout>
 </RelativeLayout>

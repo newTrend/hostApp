@@ -5,7 +5,6 @@
     tools:context="com.hostapp.parminder.hostapp.RSVP">
 
 
-
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
@@ -23,35 +22,72 @@
         android:background="#FFFFFF">
 
         <TextView
+            android:id="@+id/coming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="People Coming     -"
+            android:layout_marginLeft="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"/>
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView4"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/textView4"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="5dp"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000" />
+            android:textColor="@color/black"
+            />
 
+        <TextView
+            android:id="@+id/invited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="People Invited       -"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="40dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="230dp"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000" />
+            android:textColor="@color/black" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/relative1"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:background="#FFFFFF">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Invited Person"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/accentColor"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Coming With"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="230dp"
+            android:textColor="@color/accentColor"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
         <ListView
+            android:layout_marginTop="50dp"
             android:id="@+id/listView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

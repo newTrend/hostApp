@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#FF5722">
+    android:background="@color/primaryColor">
 
     <TextView
         android:layout_width="match_parent"
@@ -11,20 +11,19 @@
         android:text="Marriage"
         android:textSize="50dp"
         android:gravity="center"
-        android:layout_marginTop="330dp"
-        android:textColor="#F5F5F5"
+        android:layout_marginTop="230dp"
+        android:textColor="@color/textColor"
         android:id="@+id/logo"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Manager"
-        android:textColor="#F5F5F5"
+        android:textColor="@color/textColor"
         android:textSize="30dp"
         android:gravity="center"
         android:id="@+id/logo2"
         android:layout_below="@+id/logo"
         android:layout_marginBottom="35dp"/>
-
 
 
 </RelativeLayout>

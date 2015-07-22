@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
@@ -29,11 +30,17 @@ public class Invite extends ActionBarActivity {
     Button phoneBook;
     Button submit;
     String TAG="LogCheck";
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         number = (EditText) findViewById(R.id.phoneNumber);
         name = (EditText) findViewById(R.id.friendName);
         submit = (Button) findViewById(R.id.invite);
@@ -108,5 +115,27 @@ public class Invite extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_invite, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (item.getItemId() == android.R.id.home) {
+
+            Intent home = new Intent(getApplicationContext(), RSVP.class);
+            startActivity(home);
+
+            /*Intent intent = NavUtils.getParentActivityIntent(this);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            NavUtils.navigateUpTo(this, intent);
+            // NavUtils.navigateUpFromSameTask(this);
+            // finish();*/
+            return true;
+        }
+    }
+
 
 }

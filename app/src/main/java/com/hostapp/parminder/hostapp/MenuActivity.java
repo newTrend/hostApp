@@ -2,6 +2,7 @@ package com.hostapp.parminder.hostapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
@@ -16,13 +17,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,14 +39,17 @@ import java.util.ArrayList;
 import static android.widget.AdapterView.*;
 
 
-public class MenuActivity extends ActionBarActivity {
+public class MenuActivity extends ActionBarActivity  {
+
+    private static final String TAG_VEG = "vegItem";
+    private static final String TAG_NONVEG = "nonvegItem";
 
     mainHappening adapterObj;
     ListView l;
     String TAG="check";
     Toolbar toolbar;
     ArrayList listName=new ArrayList();
-    Button addbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +77,6 @@ public class MenuActivity extends ActionBarActivity {
                                         JSONObject json = dataSet.getJSONObject(i);
                                         listName.add(json.get("name"));
                                         //now user can perform the action
-                                        addbutton= (Button) findViewById(R.id.addButton);
-                                        addbutton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent=new Intent(MenuActivity.this,AddMenuItem.class);
-                                                startActivity(intent);
-                                            }
-                                        });
 
                                     }
                                 }
@@ -103,7 +104,46 @@ public class MenuActivity extends ActionBarActivity {
 
         }
 
+        ImageView imageView = new ImageView(this); // Create an icon
+        imageView.setImageResource(R.drawable.plus);
 
+        FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
+                .setContentView(imageView)
+                .build();
+
+        SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+
+        ImageView itemIcon1 = new ImageView(this);
+        itemIcon1.setImageResource(R.drawable.pluswhite);
+        SubActionButton vegButton = itemBuilder.setContentView(itemIcon1).build();
+        vegButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent veg = new Intent(getApplicationContext(),AddMenuItem.class);
+                startActivity(veg);
+            }
+        });
+        /*vegButton.setTag(TAG_VEG);*/
+
+
+
+        ImageView itemIcon2 = new ImageView(this);
+        itemIcon2.setImageResource(R.drawable.plus);
+        SubActionButton nonvegButton = itemBuilder.setContentView(itemIcon2).build();
+        nonvegButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nonveg = new Intent(getApplicationContext(),AddMenuItem.class);
+                startActivity(nonveg);
+            }
+        });
+        /*nonvegButton.setTag(TAG_NONVEG);*/
+
+        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+                .addSubActionView(vegButton)
+                .addSubActionView(nonvegButton)
+                .attachTo(actionButton)
+                .build();
 
     }
 
@@ -140,6 +180,18 @@ public class MenuActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+   /* @Override
+    public void onClick(View v) {
+
+        if(v.getTag().equals(TAG_VEG)){
+            Toast toast = Toast.makeText(getApplicationContext(),"Veg_Item Clicked",Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        if(v.getTag().equals(TAG_NONVEG)){
+            Toast toast = Toast.makeText(getApplicationContext(),"Non-Veg_Item Clicked",Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }*/
 }
 
 
